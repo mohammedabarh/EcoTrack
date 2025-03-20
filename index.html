@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - Empowering Sustainable Living</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Particle.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-green-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Particle.js Background -->
+    <div id="particles-js" class="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-green-100 dark:border-green-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center space-x-2">
+                        <i class="fas fa-leaf text-2xl text-green-500"></i>
+                        <span class="text-xl font-bold text-green-600 dark:text-green-400">EcoTrack</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#dashboard" class="nav-link text-gray-600 dark:text-gray-300 hover:text-green-500">Dashboard</a>
+                    <a href="#activities" class="nav-link text-gray-600 dark:text-gray-300 hover:text-green-500">Activities</a>
+                    <a href="#community" class="nav-link text-gray-600 dark:text-gray-300 hover:text-green-500">Community</a>
+                    <a href="#goals" class="nav-link text-gray-600 dark:text-gray-300 hover:text-green-500">Goals</a>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <i class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-green-600 dark:text-green-400 mb-6">
+                Track Your Environmental Impact
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                Make sustainable choices and contribute to a greener future
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full transition-colors">
+                    Get Started
+                </button>
+                <button class="border border-green-500 text-green-500 hover:bg-green-50 dark:hover:bg-green-900/30 px-8 py-3 rounded-full transition-colors">
+                    Learn More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-8">Your Impact Dashboard</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Stats Cards -->
+                <div class="glass-card p-6 stat-card">
+                    <h3 class="text-lg font-semibold text-gray-600 dark:text-gray-300">Carbon Footprint</h3>
+                    <p class="text-3xl font-bold text-green-500">2.5 tons</p>
+                    <div class="eco-progress mt-4">
+                        <div class="eco-progress-bar" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 stat-card">
+                    <h3 class="text-lg font-semibold text-gray-600 dark:text-gray-300">Energy Saved</h3>
+                    <p class="text-3xl font-bold text-green-500">487 kWh</p>
+                    <div class="eco-progress mt-4">
+                        <div class="eco-progress-bar" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 stat-card">
+                    <h3 class="text-lg font-semibold text-gray-600 dark:text-gray-300">Water Saved</h3>
+                    <p class="text-3xl font-bold text-green-500">1,250 L</p>
+                    <div class="eco-progress mt-4">
+                        <div class="eco-progress-bar" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 stat-card">
+                    <h3 class="text-lg font-semibold text-gray-600 dark:text-gray-300">Trees Planted</h3>
+                    <p class="text-3xl font-bold text-green-500">12</p>
+                    <div class="eco-progress mt-4">
+                        <div class="eco-progress-bar" style="width: 45%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass-card p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Monthly Impact Trends</h3>
+                    <div class="chart-container">
+                        <canvas id="impactChart"></canvas>
+                    </div>
+                </div>
+                <div class="glass-card p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Activity Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="activityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities" class="py-12 px-4 bg-green-50/50 dark:bg-gray-800/50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-8">Recent Activities</h2>
+            <div class="grid gap-6">
+                <div class="activity-item glass-card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Recycling</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Recycled 5kg of plastic materials</p>
+                        </div>
+                        <span class="text-green-500 text-lg font-semibold">+25 points</span>
+                    </div>
+                </div>
+                <div class="activity-item glass-card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Energy Saving</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Used energy-efficient appliances</p>
+                        </div>
+                        <span class="text-green-500 text-lg font-semibold">+15 points</span>
+                    </div>
+                </div>
+                <div class="activity-item glass-card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Water Conservation</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Installed water-saving fixtures</p>
+                        </div>
+                        <span class="text-green-500 text-lg font-semibold">+20 points</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-8">Community Leaderboard</h2>
+            <div class="grid gap-4">
+                <div class="leaderboard-item glass-card p-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-2xl font-bold text-green-500">1</span>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">MOohammed </h3>
+                                <p class="text-gray-600 dark:text-gray-300">1,250 points</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-crown text-yellow-400 text-2xl"></i>
+                    </div>
+                </div>
+                <!-- Add more leaderboard items -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section id="goals" class="py-12 px-4 bg-green-50/50 dark:bg-gray-800/50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-8">Environmental Goals</h2>
+            <div class="grid gap-6">
+                <div class="goal-progress glass-card p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Reduce Carbon Footprint</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Goal: 2 tons per year</p>
+                    <div class="eco-progress">
+                        <div class="eco-progress-bar" style="width: 75%"></div>
+                    </div>
+                </div>
+                <!-- Add more goals -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-green-100 dark:border-green-900 py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">About EcoTrack</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Empowering sustainable living through data-driven insights</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-green-500">Dashboard</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-green-500">Activities</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-green-500">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-green-500">Blog</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-green-500">FAQ</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-green-500">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-green-500">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-green-500">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-green-500">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JS Files -->
+    <script src="js/particles-config.js"></script>
+    <script src="js/charts-config.js"></script>
+    <script src="js/theme-toggle.js"></script>
+</body>
+</html>
